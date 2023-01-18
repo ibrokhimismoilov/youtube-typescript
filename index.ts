@@ -1,50 +1,79 @@
-// TypeScript => functions, signature functions, function overloads
+// Tiplarni o'zgartirish va birlashtrish,
+// unknown type, union types, literal types, type aliases, required and optional properties, operator in
 
-// function pow(x, y) {
-//   return x ** y;
-// }
+let a: any = 1;
+let b: number = a;
+let c: unknown = 2.1234;
 
-function pow(x: number, y: number): string {
-  return `${x} ** ${y} = ${x ** y}`;
+let d: number = <number>c;
+let e: number = c as number;
+
+// (<number>c).toFixed(2)
+// (c as number).toFixed(2);
+
+// (c as string).concat("asas");
+
+//==================================
+
+// Union types
+let f: number | string | boolean = 2;
+f = "asas";
+f = true;
+// f = {}
+
+// Literal types
+let size: "s" | "m" | "l";
+size = "s";
+size = "m";
+size = "l";
+// size = "xl";
+
+// let f2: number | string | boolean = 2;
+
+// Type aliases
+type TYPE = number | string | boolean;
+
+let f2: TYPE;
+f2 = 12;
+f2 = "";
+f2 = true;
+// f2 = {}
+
+type SIZE = "S" | "M" | "L" | boolean;
+
+let product: SIZE = false;
+product = "S";
+product = "M";
+product = "L";
+// product = "XL"
+
+let o: { name: string } | { age: number };
+o = { name: "" };
+o = { age: 12 };
+o = { name: "", age: 12 };
+// o = { name: 12, age: 12 };
+// o = { name: 12, age: 12, lastName: "" };
+// o = {}
+
+// Tiplarni birlashirish
+
+type O2 = { name: string } & { age: number };
+
+let o2: O2;
+let o3: O2;
+
+o2 = { name: "", age: 12 };
+o3 = { name: "", age: 23 };
+
+//required & optional properties
+type OBJ = { firstname: string; age?: number };
+
+let person: OBJ = { firstname: "Ibrokhim" };
+
+// person = { firstname: "Ismoil", age: 12 };
+
+if ("age" in person) {
+  console.log("Age property mavjud");
+} else {
+  console.log("Age property mavjud emas");
 }
-
-// console.log(pow(2, 3));
-
-// const add = (x, y) => x + y;
-const add = (x: number, y: number): number => x + y;
-
-function log(x: number): void {
-  console.log(x);
-}
-
-function someFunc(s: string): never {
-  throw new Error(s);
-}
-
-// signature functions
-
-let c: (x: number, y: string) => string;
-
-// c = function (a: number, b: number): number {
-//   return a + b;
-// };
-
-c = function (a: number, b: string): string {
-  return `${b}: ${a}`;
-};
-
-// console.log(c(2, "Javob"));
-
-// function overloads
-
-function overloadFunc(x: number, y: number): number;
-function overloadFunc(x: string, y: number): string;
-function overloadFunc(x: any, y: any): any {
-  if (typeof x === "number" && typeof y === "number") {
-    return x + y;
-  } else {
-    return `${x} ${y}`;
-  }
-}
-
-console.log(overloadFunc("Javob", 17));
