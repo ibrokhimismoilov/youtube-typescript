@@ -1,44 +1,50 @@
-// TypeScriptda asosiy ma'lumot turlari
-// let a = 12
-// a = "salom"
-// a = 1 + 2
-// a = 1 + "salom" // "1salom"
-let a: number;
-a = 17;
+// TypeScript => functions, signature functions, function overloads
 
-// let b = "ibrohim";
-// b = 12
-// b = true
-// b = b + " Ismoilov";
-let b: string = "Ibrokhim";
+// function pow(x, y) {
+//   return x ** y;
+// }
 
-// let c = true;
-// c = 12
-// c = "salom"
-// c = false
-let c: boolean;
-c = false;
+function pow(x: number, y: number): string {
+  return `${x} ** ${y} = ${x ** y}`;
+}
 
-// let d = null
-let d: null = null;
-// d = true
+// console.log(pow(2, 3));
 
-let e: undefined = undefined;
+// const add = (x, y) => x + y;
+const add = (x: number, y: number): number => x + y;
 
-// let f = {}
-// let f: object = {}
-// f = 1
-// f = {name: "Ibrokhim"}
-// f.
-// let f: { name: string } = { name: "Ismoil" };
-const f: { lastName: string } = { lastName: "Ismoil" };
-// f = {lastName: "Ibrokhim"}
-f.lastName = "Ibrokhim";
+function log(x: number): void {
+  console.log(x);
+}
 
-let g: any;
-g = 1;
-g = undefined;
-g = "string";
-g = false;
-g = function () {};
-g = {};
+function someFunc(s: string): never {
+  throw new Error(s);
+}
+
+// signature functions
+
+let c: (x: number, y: string) => string;
+
+// c = function (a: number, b: number): number {
+//   return a + b;
+// };
+
+c = function (a: number, b: string): string {
+  return `${b}: ${a}`;
+};
+
+// console.log(c(2, "Javob"));
+
+// function overloads
+
+function overloadFunc(x: number, y: number): number;
+function overloadFunc(x: string, y: number): string;
+function overloadFunc(x: any, y: any): any {
+  if (typeof x === "number" && typeof y === "number") {
+    return x + y;
+  } else {
+    return `${x} ${y}`;
+  }
+}
+
+console.log(overloadFunc("Javob", 17));
