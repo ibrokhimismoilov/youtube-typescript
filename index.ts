@@ -1,79 +1,55 @@
-// Tiplarni o'zgartirish va birlashtrish,
-// unknown type, union types, literal types, type aliases, required and optional properties, operator in
+// Massivlar, kortejlar va qayta hisoblash
 
-let a: any = 1;
-let b: number = a;
-let c: unknown = 2.1234;
+// let a = [];
+// a = [12, true, "str", []]
+// let a = [1, 2, 4]
+let a: number[] = [];
+a = [1];
+// a = [1, 2, true]
 
-let d: number = <number>c;
-let e: number = c as number;
+let b: string[] = ["text", "str", ""];
 
-// (<number>c).toFixed(2)
-// (c as number).toFixed(2);
+let c: Array<number> = [1, 2, 3];
 
-// (c as string).concat("asas");
+let d: (number | string)[] = ["", 12, ""];
 
-//==================================
+let e: Array<number | string> = [1, 2, 3, ""];
 
-// Union types
-let f: number | string | boolean = 2;
-f = "asas";
-f = true;
-// f = {}
+// ===================================================
+// kortejlar
 
-// Literal types
-let size: "s" | "m" | "l";
-size = "s";
-size = "m";
-size = "l";
-// size = "xl";
+let f: [number, string] = [1, "asd"];
+// f = [true]
+// f = [""]
+f = [1, "str"];
 
-// let f2: number | string | boolean = 2;
+let g: [number, string?, boolean?];
 
-// Type aliases
-type TYPE = number | string | boolean;
+g = [12, "str", true];
 
-let f2: TYPE;
-f2 = 12;
-f2 = "";
-f2 = true;
-// f2 = {}
+// let h: [number, string?, boolean]
 
-type SIZE = "S" | "M" | "L" | boolean;
+// ===================================================
+// Qayta hisoblash [Enums]
 
-let product: SIZE = false;
-product = "S";
-product = "M";
-product = "L";
-// product = "XL"
-
-let o: { name: string } | { age: number };
-o = { name: "" };
-o = { age: 12 };
-o = { name: "", age: 12 };
-// o = { name: 12, age: 12 };
-// o = { name: 12, age: 12, lastName: "" };
-// o = {}
-
-// Tiplarni birlashirish
-
-type O2 = { name: string } & { age: number };
-
-let o2: O2;
-let o3: O2;
-
-o2 = { name: "", age: 12 };
-o3 = { name: "", age: 23 };
-
-//required & optional properties
-type OBJ = { firstname: string; age?: number };
-
-let person: OBJ = { firstname: "Ibrokhim" };
-
-// person = { firstname: "Ismoil", age: 12 };
-
-if ("age" in person) {
-  console.log("Age property mavjud");
-} else {
-  console.log("Age property mavjud emas");
+enum Gender {
+  Male = 10,
+  Female,
 }
+
+// console.log(Gender.Male, Gender.Female);
+// console.log("Male=" + Gender[Gender.Male], "Female" + Gender[Gender.Female]);
+
+enum G {
+  A = "Hello",
+  B = "TypeScript",
+}
+
+// console.log(G.A, G.B, G[G.A]);
+
+const enum H {
+  A = "Hello",
+  B = "TypeScript",
+}
+
+console.log(H.A, H.B);

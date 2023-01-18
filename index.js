@@ -1,48 +1,37 @@
 "use strict";
-// Tiplarni o'zgartirish va birlashtrish,
-// unknown type, union types, literal types, type aliases, required and optional properties, operator in
-let a = 1;
-let b = a;
-let c = 2.1234;
-let d = c;
-let e = c;
-// (<number>c).toFixed(2)
-// (c as number).toFixed(2);
-// (c as string).concat("asas");
-//==================================
-// Union types
-let f = 2;
-f = "asas";
-f = true;
-// f = {}
-// Literal types
-let size;
-size = "s";
-size = "m";
-size = "l";
-let f2;
-f2 = 12;
-f2 = "";
-f2 = true;
-let product = false;
-product = "S";
-product = "M";
-product = "L";
-// product = "XL"
-let o;
-o = { name: "" };
-o = { age: 12 };
-o = { name: "", age: 12 };
-let o2;
-let o3;
-o2 = { name: "", age: 12 };
-o3 = { name: "", age: 23 };
-let person = { firstname: "Ibrokhim" };
-// person = { firstname: "Ismoil", age: 12 };
-if ("age" in person) {
-    console.log("Age property mavjud");
-}
-else {
-    console.log("Age property mavjud emas");
-}
+// Massivlar, kortejlar va qayta hisoblash
+// let a = [];
+// a = [12, true, "str", []]
+// let a = [1, 2, 4]
+let a = [];
+a = [1];
+// a = [1, 2, true]
+let b = ["text", "str", ""];
+let c = [1, 2, 3];
+let d = ["", 12, ""];
+let e = [1, 2, 3, ""];
+// ===================================================
+// kortejlar
+let f = [1, "asd"];
+// f = [true]
+// f = [""]
+f = [1, "str"];
+let g;
+g = [12, "str", true];
+// let h: [number, string?, boolean]
+// ===================================================
+// Qayta hisoblash [Enums]
+var Gender;
+(function (Gender) {
+    Gender[Gender["Male"] = 10] = "Male";
+    Gender[Gender["Female"] = 11] = "Female";
+})(Gender || (Gender = {}));
+// console.log(Gender.Male, Gender.Female);
+// console.log("Male=" + Gender[Gender.Male], "Female" + Gender[Gender.Female]);
+var G;
+(function (G) {
+    G["A"] = "Hello";
+    G["B"] = "TypeScript";
+})(G || (G = {}));
+console.log("Hello" /* H.A */, "TypeScript" /* H.B */);
 //# sourceMappingURL=index.js.map
