@@ -1,6 +1,63 @@
 // TypeScript classes & inheritance.
 
-class Person {
+// interface IPerson {
+//   _name: string; // name?: string,
+//   _age: number;
+//   seyHello(): string; // sayHello: () => string;
+// }
+
+// type IPerson = {
+//   _name: string; // name?: string,
+//   _age: number;
+//   seyHello(): string; // sayHello: () => string;
+// };
+
+//======================================================
+
+// interface IPerson {
+//   _name: string;
+//   _age: number;
+// }
+
+// interface IPerson {
+//   seyHello(): string;
+// }
+
+// type IPerson {
+//   _name: string;
+//   _age: number;
+// }
+
+// type IPerson {
+//   seyHello(): string;
+// }
+
+//======================================================
+
+// interface IPersonProps {
+//   _name: string;
+//   _age: number;
+// }
+
+// interface Test {}
+
+// interface IPerson extends IPersonProps, Test {
+//   seyHello(): string;
+// }
+
+type IPersonProps = {
+  _name: string;
+  _age: number;
+};
+
+type Test = {};
+
+type IPerson = IPersonProps &
+  Test & {
+    seyHello(): string;
+  };
+
+class Person implements IPerson {
   _name: string = "";
   _age: number = 0;
 
