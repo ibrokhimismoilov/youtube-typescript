@@ -35,7 +35,6 @@ class Teacher extends Person {
         return `${parent} Men ${this.disciplines[0]} dan dars beraman`;
     }
 }
-``;
 const ibrokhim = new Person("Ibrokhim", 23);
 console.log(ibrokhim);
 console.log(ibrokhim.seyHello());
