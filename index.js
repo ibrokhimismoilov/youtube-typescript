@@ -1,5 +1,10 @@
 "use strict";
 // TypeScript classes & inheritance.
+// interface IPerson {
+//   _name: string; // name?: string,
+//   _age: number;
+//   seyHello(): string; // sayHello: () => string;
+// }
 class Person {
     constructor(name, age) {
         this._name = "";
