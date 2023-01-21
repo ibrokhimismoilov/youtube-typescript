@@ -1,70 +1,70 @@
-// TypeScriptda sinflar
+// TypeScript classes & inheritance.
 
 class Person {
-  _name: string;
-  _age: number;
+  _name: string = "";
+  _age: number = 0;
 
   constructor(name: string, age: number) {
     this._name = name;
     this._age = age;
   }
 
-  // 1ta klassda constructordan faqat 1 marotaba foydalaniladi
-  // constructor () {}
-
-  // method
-  info(value: number): string {
-    return `${this._name} - ${this._age + value} yoshda`;
+  seyHello(): string {
+    return `Assalomu alaykum. Mening ismim ${this._name}!`;
   }
-  // method1() {}
-  // method2() {}
+}
 
-  static isFlaying = false;
-  static description(): string {
-    return `Bu klass Person haqida......`;
-  }
+class Student extends Person {
+  _group: string = "";
+  _course: number = 0;
 
-  get name(): string {
-    return this._name;
+  constructor(name: string, age: number, group: string, course: number) {
+    super(name, age);
+    this._group = group;
+    this._course = course;
   }
 
-  set name(value: string) {
-    this._name = value;
+  seyHello(): string {
+    const parentMethod = super.seyHello();
+    return `${parentMethod} Men ${this._course}-kursning, ${this._group}da o'qiyman.`;
+  }
+}
+
+class Teacher extends Person {
+  disciplines: string[] = [];
+
+  constructor(name: string, age: number, disciplines: string[]) {
+    super(name, age);
+    this.disciplines = disciplines;
   }
 
-  get age(): number {
-    return this._age;
-  }
-
-  set age(value: number) {
-    if (value > 0 && value < 100) {
-      this._age = value;
-    } else {
-      throw new Error("Siz notog'ri yosh kiritidingiz");
-    }
+  info(): string {
+    const parent = super.seyHello();
+    return `${parent} Men ${this.disciplines[0]} dan dars beraman`;
   }
 }
 
 const ibrokhim: Person = new Person("Ibrokhim", 23);
-const ismoil: Person = new Person("Ismoil", 24);
 
-// const ibrokhim: { name: string; age: number } = { name: "Ibrokhim", age: 23 };
-// const ismoil: { name: string; age: number } = { name: "Ibrokhim", age: 23 };
+console.log(ibrokhim);
+console.log(ibrokhim.seyHello());
 
-// console.log(ibrokhim.info(2));
+const sardor: Student = new Student("Sardor", 24, "617-guruh", 4);
+// sardor.
+console.log(sardor);
+console.log(sardor.seyHello());
 
-// console.log(Person.description());
-// console.log(ismoil);
+// let a: unknown = 1;
+// let b: number = <number>a
 
-// console.log(ibrokhim);
+const newSardor: Person = <Person>sardor;
+// newSardor.
 
-// ibrokhim.age = 24;
-// ibrokhim.age = -1;
+console.log(newSardor);
+console.log(newSardor.seyHello());
 
-// console.log(ibrokhim.age);
+const abror: Teacher = new Teacher("Abror", 34, ["React", "JS"]);
 
-if ({} instanceof Person) {
-  console.log("Tegishli");
-} else {
-  console.log("Tegishl emas");
-}
+console.log(abror);
+console.log(abror.seyHello());
+console.log(abror.info());
