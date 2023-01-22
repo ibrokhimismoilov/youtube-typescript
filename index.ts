@@ -1,60 +1,64 @@
-// TypeScript classes & inheritance.
+// TypeScript interface.
+
+// let a: number = 1;
+interface IPerson {
+  _name: string;
+  _age: number; // _age?: number;
+  seyHello(): string; // seyHello: () => string;
+}
+
+// type IPerson = {
+//   _name: string;
+//   _age: number; // _age?: number;
+//   seyHello(): string; // seyHello: () => string;
+// };
+
+// ============================================
+
 // interface IPerson {
-//   _name: string; // name?: string,
+//   _name: string;
 //   _age: number;
-//   seyHello(): string; // sayHello: () => string;
+// }
+
+// interface IPerson {
+//   seyHello(): string;
 // }
 
 // type IPerson = {
-//   _name: string; // name?: string,
-//   _age: number;
-//   seyHello(): string; // sayHello: () => string;
+//   _name: string;
+//   _age: number; // _age?: number;
 // };
 
-//======================================================
+// type IPerson = {
+//   seyHello(): string; // seyHello: () => string;
+// };
 
-// interface IPerson {
-//   _name: string;
-//   _age: number;
-// }
-
-// interface IPerson {
-//   seyHello(): string;
-// }
-
-// type IPerson {
-//   _name: string;
-//   _age: number;
-// }
-
-// type IPerson {
-//   seyHello(): string;
-// }
-
-//======================================================
+// ============================================
 
 // interface IPersonProps {
 //   _name: string;
+// }
+
+// interface IPersonProps2 {
 //   _age: number;
 // }
 
-// interface Test {}
-
-// interface IPerson extends IPersonProps, Test {
+// interface IPerson extends IPersonProps, IPersonProps2 {
 //   seyHello(): string;
 // }
 
-type IPersonProps = {
-  _name: string;
-  _age: number;
-};
+// type IPersonProps = {
+//   _name: string;
+// };
 
-type Test = {};
+// type IPersonProps2 = {
+//   _age: number; // _age?: number;
+// };
 
-type IPerson = IPersonProps &
-  Test & {
-    seyHello(): string;
-  };
+// type IPerson = IPersonProps &
+//   IPersonProps2 & {
+//     seyHello(): string; // seyHello: () => string;
+//   };
 
 class Person implements IPerson {
   _name: string = "";
@@ -70,7 +74,16 @@ class Person implements IPerson {
   }
 }
 
-class Student extends Person {
+// class Person {}
+
+// class Test {}
+
+interface IStudent extends IPerson {
+  _group: string;
+  _course: number;
+}
+
+class Student extends Person implements IStudent {
   _group: string = "";
   _course: number = 0;
 
@@ -86,41 +99,12 @@ class Student extends Person {
   }
 }
 
-class Teacher extends Person {
-  disciplines: string[] = [];
-
-  constructor(name: string, age: number, disciplines: string[]) {
-    super(name, age);
-    this.disciplines = disciplines;
-  }
-
-  info(): string {
-    const parent = super.seyHello();
-    return `${parent} Men ${this.disciplines[0]} dan dars beraman`;
-  }
-}
-
-const ibrokhim: Person = new Person("Ibrokhim", 23);
+const ibrokhim: IPerson = new Person("Ibrokhim", 23);
 
 console.log(ibrokhim);
 console.log(ibrokhim.seyHello());
 
-const sardor: Student = new Student("Sardor", 24, "617-guruh", 4);
-// sardor.
+const sardor: IStudent = new Student("Sardor", 24, "617-guruh", 4);
+
 console.log(sardor);
 console.log(sardor.seyHello());
-
-// let a: unknown = 1;
-// let b: number = <number>a
-
-const newSardor: Person = <Person>sardor;
-// newSardor.
-
-console.log(newSardor);
-console.log(newSardor.seyHello());
-
-const abror: Teacher = new Teacher("Abror", 34, ["React", "JS"]);
-
-console.log(abror);
-console.log(abror.seyHello());
-console.log(abror.info());
