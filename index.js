@@ -1,13 +1,17 @@
 "use strict";
-// TypeScript abstract classes.
-// classes
+// TypeScript [public, private, protected, (readonly)].
+const PI = 3.14;
 class Person {
     constructor(name, age) {
         this._name = "";
+        // public _name: string = "";
+        // private _name: string = "";
+        // protected _name: string = "";
         this._age = 0;
         this._name = name;
         this._age = age;
     }
+    // constructor(public name: string, private age: number) {}
     seyHello() {
         return `Assalomu alaykum. Mening ismim ${this._name}!`;
     }
@@ -29,14 +33,11 @@ class Student extends Person {
     `;
     }
 }
-class Teacher extends Person {
-    info() {
-        return ``;
-    }
-}
-// const ibrokhim: IPerson = new Person("Ibrokhim", 23);
-// console.log(ibrokhim);
+const ibrokhim = new Person("Ibrokhim", 23);
+console.log(ibrokhim);
+// ibrokhim._name = "Ismoil";
 const sardor = new Student("Sardor", 24, "617-guruh", 4);
 console.log(sardor);
-console.log(sardor.info());
+// sardor.
+// sardor.
 //# sourceMappingURL=index.js.map

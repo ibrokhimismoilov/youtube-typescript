@@ -1,21 +1,12 @@
-// TypeScript abstract classes.
+// TypeScript [public, private, protected, (readonly)].
 
-// interface
-interface IPerson {
-  _name: string;
-  _age: number;
-  seyHello(): string;
-  info(): string;
-}
+const PI = 3.14;
 
-interface IStudent extends IPerson {
-  _group: string;
-  _course: number;
-}
-
-// classes
-abstract class Person implements IPerson {
-  _name: string = "";
+class Person {
+  public readonly _name: string = "";
+  // public _name: string = "";
+  // private _name: string = "";
+  // protected _name: string = "";
   _age: number = 0;
 
   constructor(name: string, age: number) {
@@ -23,14 +14,14 @@ abstract class Person implements IPerson {
     this._age = age;
   }
 
+  // constructor(public name: string, private age: number) {}
+
   seyHello(): string {
     return `Assalomu alaykum. Mening ismim ${this._name}!`;
   }
-
-  abstract info(): string;
 }
 
-class Student extends Person implements IStudent {
+class Student extends Person {
   _group: string = "";
   _course: number = 0;
 
@@ -50,15 +41,11 @@ class Student extends Person implements IStudent {
   }
 }
 
-class Teacher extends Person {
-  info(): string {
-    return ``;
-  }
-}
+const ibrokhim: Person = new Person("Ibrokhim", 23);
+console.log(ibrokhim);
+// ibrokhim._name = "Ismoil";
 
-// const ibrokhim: IPerson = new Person("Ibrokhim", 23);
-// console.log(ibrokhim);
-
-const sardor: IStudent = new Student("Sardor", 24, "617-guruh", 4);
+const sardor: Student = new Student("Sardor", 24, "617-guruh", 4);
 console.log(sardor);
-console.log(sardor.info());
+// sardor.
+// sardor.
