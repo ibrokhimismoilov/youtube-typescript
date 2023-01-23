@@ -65,5 +65,4 @@ tiger.say();
 // console.log(tiger.#sound);
 
 // const cat = new Animals.Pets.Cat("Mushuk", "Myau");
-
 // cat.say();
