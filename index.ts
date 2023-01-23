@@ -1,66 +1,20 @@
-// TypeScript interface.
+// TypeScript abstract classes.
 
-// let a: number = 1;
+// interface
 interface IPerson {
   _name: string;
-  _age: number; // _age?: number;
-  seyHello(): string; // seyHello: () => string;
+  _age: number;
+  seyHello(): string;
+  info(): string;
 }
 
-// type IPerson = {
-//   _name: string;
-//   _age: number; // _age?: number;
-//   seyHello(): string; // seyHello: () => string;
-// };
+interface IStudent extends IPerson {
+  _group: string;
+  _course: number;
+}
 
-// ============================================
-
-// interface IPerson {
-//   _name: string;
-//   _age: number;
-// }
-
-// interface IPerson {
-//   seyHello(): string;
-// }
-
-// type IPerson = {
-//   _name: string;
-//   _age: number; // _age?: number;
-// };
-
-// type IPerson = {
-//   seyHello(): string; // seyHello: () => string;
-// };
-
-// ============================================
-
-// interface IPersonProps {
-//   _name: string;
-// }
-
-// interface IPersonProps2 {
-//   _age: number;
-// }
-
-// interface IPerson extends IPersonProps, IPersonProps2 {
-//   seyHello(): string;
-// }
-
-// type IPersonProps = {
-//   _name: string;
-// };
-
-// type IPersonProps2 = {
-//   _age: number; // _age?: number;
-// };
-
-// type IPerson = IPersonProps &
-//   IPersonProps2 & {
-//     seyHello(): string; // seyHello: () => string;
-//   };
-
-class Person implements IPerson {
+// classes
+abstract class Person implements IPerson {
   _name: string = "";
   _age: number = 0;
 
@@ -72,15 +26,8 @@ class Person implements IPerson {
   seyHello(): string {
     return `Assalomu alaykum. Mening ismim ${this._name}!`;
   }
-}
 
-// class Person {}
-
-// class Test {}
-
-interface IStudent extends IPerson {
-  _group: string;
-  _course: number;
+  abstract info(): string;
 }
 
 class Student extends Person implements IStudent {
@@ -93,18 +40,25 @@ class Student extends Person implements IStudent {
     this._course = course;
   }
 
-  seyHello(): string {
-    const parentMethod = super.seyHello();
-    return `${parentMethod} Men ${this._course}-kursning, ${this._group}da o'qiyman.`;
+  info(): string {
+    return `
+      Ism: ${this._name}
+      Yosh: ${this._age}
+      Kurs: ${this._course}
+      Guruh: ${this._group}
+    `;
   }
 }
 
-const ibrokhim: IPerson = new Person("Ibrokhim", 23);
+class Teacher extends Person {
+  info(): string {
+    return ``;
+  }
+}
 
-console.log(ibrokhim);
-console.log(ibrokhim.seyHello());
+// const ibrokhim: IPerson = new Person("Ibrokhim", 23);
+// console.log(ibrokhim);
 
 const sardor: IStudent = new Student("Sardor", 24, "617-guruh", 4);
-
 console.log(sardor);
-console.log(sardor.seyHello());
+console.log(sardor.info());
