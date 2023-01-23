@@ -1,51 +1,69 @@
-// TypeScript [public, private, protected, (readonly)].
+// TypeScript namespace
 
-const PI = 3.14;
-
-class Person {
-  public readonly _name: string = "";
-  // public _name: string = "";
-  // private _name: string = "";
-  // protected _name: string = "";
-  _age: number = 0;
-
-  constructor(name: string, age: number) {
-    this._name = name;
-    this._age = age;
+namespace Utils {
+  export function log(text: string, color: string, fontSize?: string): void {
+    if (fontSize) {
+      console.log(`%c${text}`, `color: ${color}; font-size: ${fontSize}`);
+    } else {
+      console.log(`%c${text}`, `color: ${color}`);
+    }
   }
 
-  // constructor(public name: string, private age: number) {}
+  log("Salom TypeScipt", "red", "32px");
+}
 
-  seyHello(): string {
-    return `Assalomu alaykum. Mening ismim ${this._name}!`;
+Utils.log("Salom dunyo", "green", "24px");
+
+namespace Animals {
+  export abstract class Animal {
+    protected name: string;
+
+    constructor(name: string) {
+      this.name = name;
+    }
+
+    abstract say(): void;
   }
 }
 
-class Student extends Person {
-  _group: string = "";
-  _course: number = 0;
+namespace Animals {
+  export class Tiger extends Animals.Animal {
+    private sound: string;
+    #sound: string;
 
-  constructor(name: string, age: number, group: string, course: number) {
-    super(name, age);
-    this._group = group;
-    this._course = course;
+    constructor(name: string, sound: string) {
+      super(name);
+      this.sound = sound;
+      this.#sound = sound;
+    }
+
+    say(): void {
+      Utils.log(`${this.name} - ${this.sound}, ${this.#sound}`, "blue", "24px");
+    }
   }
 
-  info(): string {
-    return `
-      Ism: ${this._name}
-      Yosh: ${this._age}
-      Kurs: ${this._course}
-      Guruh: ${this._group}
-    `;
+  export namespace Pets {
+    export class Cat extends Animals.Animal {
+      private sound: string;
+
+      constructor(name: string, sound: string) {
+        super(name);
+        this.sound = sound;
+      }
+
+      say(): void {
+        Utils.log(`${this.name} - ${this.sound}`, "blue", "24px");
+      }
+    }
   }
 }
 
-const ibrokhim: Person = new Person("Ibrokhim", 23);
-console.log(ibrokhim);
-// ibrokhim._name = "Ismoil";
+const tiger = new Animals.Tiger("Sherxon", "RRRR");
+console.log(tiger);
+tiger.say();
 
-const sardor: Student = new Student("Sardor", 24, "617-guruh", 4);
-console.log(sardor);
-// sardor.
-// sardor.
+// console.log(tiger.#sound);
+
+// const cat = new Animals.Pets.Cat("Mushuk", "Myau");
+
+// cat.say();
