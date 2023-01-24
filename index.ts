@@ -1,69 +1,36 @@
-// TypeScript namespace
+// TypeScript generic type
 
-namespace Utils {
-  export function log(text: string, color: string, fontSize?: string): void {
-    if (fontSize) {
-      console.log(`%c${text}`, `color: ${color}; font-size: ${fontSize}`);
-    } else {
-      console.log(`%c${text}`, `color: ${color}`);
-    }
-  }
+type A<T> = T;
 
-  log("Salom TypeScipt", "red", "32px");
-}
+type B = A<string>; // B = string
+type C = A<number>; // C = number
+type D = A<boolean>; // D = boolean
+type E = A<"TS">; // E = "TS"
 
-Utils.log("Salom dunyo", "green", "24px");
+let arr: number[] = [1, 2, 3];
+let arr2: Array<string> = ["asd", "dfsd"];
 
-namespace Animals {
-  export abstract class Animal {
-    protected name: string;
+type MyArray<T> = T[];
+const arr3: MyArray<boolean | number> = [true, false, 12];
 
-    constructor(name: string) {
-      this.name = name;
-    }
+// function echo<T>(x: T): T {
+//   return x;
+// }
 
-    abstract say(): void;
-  }
-}
+// const result = echo(12)
+// const result = echo("Salom");
+// const result: string = echo("salom");
 
-namespace Animals {
-  export class Tiger extends Animals.Animal {
-    private sound: string;
-    #sound: string;
+const echo = <T>(x: T): T => {
+  return x;
+};
 
-    constructor(name: string, sound: string) {
-      super(name);
-      this.sound = sound;
-      this.#sound = sound;
-    }
+const echo2: <T>(x: T) => T = <T>(x: T): T => {
+  return x;
+};
 
-    say(): void {
-      Utils.log(`${this.name} - ${this.sound}, ${this.#sound}`, "blue", "24px");
-    }
-  }
+type ECHO = <T>(x: T) => T;
 
-  export namespace Pets {
-    export class Cat extends Animals.Animal {
-      private sound: string;
+const echo3: ECHO = <T>(x: T): T => x;
 
-      constructor(name: string, sound: string) {
-        super(name);
-        this.sound = sound;
-      }
-
-      say(): void {
-        Utils.log(`${this.name} - ${this.sound}`, "blue", "24px");
-      }
-    }
-  }
-}
-
-const tiger = new Animals.Tiger("Sherxon", "RRRR");
-console.log(tiger);
-tiger.say();
-
-// console.log(tiger.#sound);
-
-// const cat = new Animals.Pets.Cat("Mushuk", "Myau");
-
-// cat.say();
+const result = echo3<string>("TS");
