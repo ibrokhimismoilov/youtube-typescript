@@ -1,51 +1,54 @@
 // TypeScript generic type
 
-// class List<T> {
-//   elements: T[] = [];
+// type A<T> = T;
+// type B = A<string>;
+// type C = A<"TS">;
+// type D = A<number>;
 
-//   add(element: T): void {
-//     this.elements.push(element);
-//   }
+// type A<T extends string> = T;
+type A<T> = T extends string ? string : never;
+
+type B = A<string>;
+type C = A<"JS">;
+type D = A<number>;
+
+// function getName<T extends { name: string }>(person: T): void {
+//   console.log(person.name);
 // }
 
-// let list = new List<number | string>();
+// getName({ name: "Ibrokhim", age: 23 });
 
-// list.add(12);
+// getName({ age: 23 });
 
-// list.add(23);
-// list.add("asda");
-// list.add("salom");
-
-// console.log(list);
-
-// let list2 = new List<boolean | undefined>();
-
-// list2.add(undefined);
-// list2.add(true);
-
-interface IList<T> {
-  elements: T[];
-  add(element: T): void;
-  // new (name: string, age: number): void;
+interface IName {
+  name: string;
 }
 
-type ListType = string | number | boolean;
-
-class List implements IList<ListType> {
-  elements: ListType[] = [];
-
-  add(element: ListType): void {
-    this.elements.push(element);
-  }
+function getName<T extends IName>(person: T): void {
+  console.log(person.name);
 }
 
-let list = new List();
+getName({ name: "Ismoil" });
+// getName({ age: 23 });
 
-list.add("Salom");
-list.add("Dunyo");
+// =======================================================================
 
-list.add(12);
+interface Inter {
+  a: string;
+  b: boolean;
+  c: number;
+}
 
-list.add(true);
+type InterKeys = keyof Inter; // a | b | c
 
-console.log(list);
+function getProperty<ObjType, ObjKey extends keyof ObjType>(
+  obj: ObjType,
+  key: ObjKey
+) {
+  return obj[key];
+}
+
+const result = getProperty(
+  { name: "Ibrokhim", age: 23, lastName: "Ismoilov" },
+  "lastName"
+);

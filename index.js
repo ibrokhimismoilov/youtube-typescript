@@ -1,17 +1,11 @@
 "use strict";
 // TypeScript generic type
-class List {
-    constructor() {
-        this.elements = [];
-    }
-    add(element) {
-        this.elements.push(element);
-    }
+function getName(person) {
+    console.log(person.name);
 }
-let list = new List();
-list.add("Salom");
-list.add("Dunyo");
-list.add(12);
-list.add(true);
-console.log(list);
+getName({ name: "Ismoil" });
+function getProperty(obj, key) {
+    return obj[key];
+}
+const result = getProperty({ name: "Ibrokhim", age: 23, lastName: "Ismoilov" }, "lastName");
 //# sourceMappingURL=index.js.map
