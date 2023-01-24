@@ -1,36 +1,51 @@
 // TypeScript generic type
 
-type A<T> = T;
+// class List<T> {
+//   elements: T[] = [];
 
-type B = A<string>; // B = string
-type C = A<number>; // C = number
-type D = A<boolean>; // D = boolean
-type E = A<"TS">; // E = "TS"
-
-let arr: number[] = [1, 2, 3];
-let arr2: Array<string> = ["asd", "dfsd"];
-
-type MyArray<T> = T[];
-const arr3: MyArray<boolean | number> = [true, false, 12];
-
-// function echo<T>(x: T): T {
-//   return x;
+//   add(element: T): void {
+//     this.elements.push(element);
+//   }
 // }
 
-// const result = echo(12)
-// const result = echo("Salom");
-// const result: string = echo("salom");
+// let list = new List<number | string>();
 
-const echo = <T>(x: T): T => {
-  return x;
-};
+// list.add(12);
 
-const echo2: <T>(x: T) => T = <T>(x: T): T => {
-  return x;
-};
+// list.add(23);
+// list.add("asda");
+// list.add("salom");
 
-type ECHO = <T>(x: T) => T;
+// console.log(list);
 
-const echo3: ECHO = <T>(x: T): T => x;
+// let list2 = new List<boolean | undefined>();
 
-const result = echo3<string>("TS");
+// list2.add(undefined);
+// list2.add(true);
+
+interface IList<T> {
+  elements: T[];
+  add(element: T): void;
+  // new (name: string, age: number): void;
+}
+
+type ListType = string | number | boolean;
+
+class List implements IList<ListType> {
+  elements: ListType[] = [];
+
+  add(element: ListType): void {
+    this.elements.push(element);
+  }
+}
+
+let list = new List();
+
+list.add("Salom");
+list.add("Dunyo");
+
+list.add(12);
+
+list.add(true);
+
+console.log(list);
