@@ -1,12 +1,36 @@
-// TypeScript - usefull global utility types
-// Uppercase, Lowercase, Capitalize, UnCapitalize
+abstract class ComputerFile {
+  abstract name: string;
 
-type SIZES = "sm" | "md" | "lg";
+  abstract set size(value: number);
 
-type U = Uppercase<SIZES>; // "SM" | "MD" | "LG"
+  abstract get size(): number;
 
-type L = Lowercase<U>; // "sm" | "md" | "lg"
+  abstract show(): void;
+}
 
-type C = Capitalize<L>; // "Sm" | "Md" | "Lg"
+class TextFile extends ComputerFile {
+  name: string;
+  size: number;
 
-type UC = Uncapitalize<U>; // "sM" | "mD" | "lG"
+  constructor(name: string, size: number) {
+    super();
+    this.name = name;
+    this.size = size;
+  }
+
+  show(): void {
+    console.log(this.size);
+  }
+}
+
+// namespace & module
+
+namespace Photos {
+  export class JPEG {}
+  export class PNG {}
+}
+
+module Videos {
+  export class MP4 {}
+  export class AVI {}
+}
