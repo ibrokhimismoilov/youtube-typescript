@@ -1,54 +1,67 @@
 // TypeScript - usefull global utility types
-// Pick, Extract, Exclude, Omit
+// Parameters, ConstructorParameters, ReturnType, InstanceType
 
-type Vector1 = { x: number; y: number; z: number };
-type Vector2 = Pick<Vector1, "x" | "y">;
-// type Vector2 = {
-//   x: number;
-//   y: number;
-// };
+function function1(x: string, y: number): boolean {
+  return x.length > y.toString().length;
+}
 
-type MyPick<T, K extends keyof T> = { [P in K]: T[P] };
+type A = typeof function1;
 
-type Vector3 = MyPick<Vector1, "x" | "z">;
-// type Vector3 = {
-//     x: number;
-//     z: number;
-// }
+// Parameters
+type B = Parameters<A>; // [ string, number]
 
-// Extract
+type MyParametrs<T extends (...args: any) => any> = T extends (
+  ...args: infer U
+) => any
+  ? U
+  : never;
 
-type A = string | number | boolean;
-type B = string | boolean;
+type B2 = MyParametrs<A>; // [string, number]
 
-type C = Extract<A, B>; // string | boolean
+// ======================================================================
+// ConstructorParameters
 
-type MyExtract<T, U> = T extends U ? T : never;
+class Class1 {
+  a: number;
+  b: string;
 
-type D = MyExtract<A, B>; // string | boolean
+  constructor(a: number, b: string) {
+    this.a = a;
+    this.b = b;
+  }
+}
 
-// Exclude
+type C = typeof Class1;
 
-type E = Exclude<A, B>; // number
+type D = ConstructorParameters<C>; // [a: number, b: string]
 
-type MyExclude<T, U> = T extends U ? never : T;
+type MyConstructorParameters<T extends new (...args: any) => any> =
+  T extends new (...args: infer U) => any ? U : never;
 
-type F = MyExclude<A, B>; // number
+type D2 = MyConstructorParameters<C>;
 
-// Omit
+// ======================================================================
+// ReturnType
 
-type Person1 = { name: string; age: number; weight: number; height: number };
-type Person2 = Omit<Person1, "weight" | "height">;
-// type Person2 = {
-//   name: string;
-//   age: number;
-// };
+type E = ReturnType<A>;
 
-type MyOmit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
+type MyReturnType<T extends (...args: any) => any> = T extends (
+  ...args: any
+) => infer U
+  ? U
+  : never;
 
-type Person3 = MyOmit<Person1, "weight">;
-// type Person3 = {
-//     height: number;
-//     name: string;
-//     age: number;
-// }
+type E2 = MyReturnType<A>;
+
+// ======================================================================
+// InstanceType
+
+type F = InstanceType<C>; // Class1
+
+type MyInstanceType<T extends new (...args: any) => any> = T extends new (
+  ...args: any
+) => infer U
+  ? U
+  : never;
+
+type F2 = MyInstanceType<C>; // Class1
