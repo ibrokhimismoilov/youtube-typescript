@@ -1,36 +1,26 @@
-abstract class ComputerFile {
-  abstract name: string;
+// TypeScript - BigInt
+console.log("Number.MAX_VALUE", Number.MAX_VALUE);
+console.log("Number.MAX_SAFE_INTEGER", Number.MAX_SAFE_INTEGER);
+console.log("9007199254740991 + 2", Number.MAX_SAFE_INTEGER + 2);
+console.log("9999999999999999", 9999999999999999);
 
-  abstract set size(value: number);
+// let a: bigint = 12;
+let a: bigint = 12n;
+// let b: bigint = 12.3n;
 
-  abstract get size(): number;
+// console.log(a);
 
-  abstract show(): void;
-}
+// let c: bigint = <bigint>12
+// let d: bigint = 12 as bigint;
+let e: bigint = BigInt(12);
 
-class TextFile extends ComputerFile {
-  name: string;
-  size: number;
+console.log("e=>", e);
 
-  constructor(name: string, size: number) {
-    super();
-    this.name = name;
-    this.size = size;
-  }
+console.log(11n / 3n);
 
-  show(): void {
-    console.log(this.size);
-  }
-}
+console.log(
+  "BigInt 9007199254740991 + 2",
+  BigInt(Number.MAX_SAFE_INTEGER) + 2n
+);
 
-// namespace & module
-
-namespace Photos {
-  export class JPEG {}
-  export class PNG {}
-}
-
-module Videos {
-  export class MP4 {}
-  export class AVI {}
-}
+console.log("99999999999999999999n", 99999999999999999999n);
