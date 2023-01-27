@@ -1,83 +1,67 @@
-// TypeScript - Nullish assignment vs chaining operator
-// ?? - ?.
+// TypeScript - ! operator va foydalanuvchi ma'lumotlarini tekshirish
 
-// ?? -  Nullish assignment
-// null, undefined
-
-// || - yoki
-// false, 0, "", undefined, null
-
-let a: number | null | undefined = null;
-a = undefined;
-a = 20;
-
-// // let b = "" ?? 0;
-// let b = "" || 0;
-
-let b: number = a ?? 0;
-
-// console.log(b);
-
-// ========================================================
-// ?. - chaining operator
-// const obj = {
-//   user: {
-//     name: "",
-//     country: {
-//       region: "",
-//     },
-//   },
-// };
-
-// const obj2 = {
-//   user: {
-//     name: "",
-//     country: null,
-//   },
-// };
-
-// console.log(obj.user?.country?.region); // undefined
-
-function add(x: number, y: number, cb?: (v: number) => void): number {
-  let natija: number = x + y;
-
-  //   if (cb) {
-  //     cb(natija);
-  //   }
-
-  cb?.(natija);
-
-  return natija;
+interface IProduct {
+  name: string;
+  weight?: number;
 }
 
-// const result: number = add(2, 3, (e) => console.log(">>>", e));
+function calcWeightProducts(products: IProduct[]): number {
+  let totalWeight: number = 0;
 
-// console.log("result", result);
-
-// ========================================================
-
-type Arr = ({ price: number } | null | undefined)[];
-
-function calcProductPrice(arr: Arr): number {
-  let s: number = 0;
-
-  arr.forEach((item) => {
-    s += item?.price ?? 0;
+  products.forEach((product) => {
+    totalWeight += product.weight!;
   });
 
-  return s;
+  return totalWeight;
 }
 
-const result: number = calcProductPrice([
-  { price: 1 },
-  null,
-  { price: 2 },
-  undefined,
-  { price: 3 },
-  null,
-  { price: 4 },
-  undefined,
-  { price: 5 },
+const result: number = calcWeightProducts([
+  { name: "Product 1", weight: 1 },
+  { name: "Product 2", weight: 2 },
+  { name: "Product 3", weight: 3 },
 ]);
 
-console.log("Result = ", result);
+console.log(result);
+
+// =============================================================
+let a: number | undefined | null = null;
+
+setTimeout(() => {
+  a = 20;
+}, 500);
+
+setTimeout(() => {
+  let b: number = a!;
+
+  console.log(b);
+}, 1000);
+
+// =============================================================
+// let s: string;
+// console.log(s!);
+
+// =============================================================
+
+class FrontendDeveloper {
+  isCreateRestApi: boolean = false;
+}
+
+class BackendDeveloper {
+  isCreateRestApi: boolean = true;
+
+  createRestApi() {}
+}
+
+function isBackendDeveloper(developer: any): developer is BackendDeveloper {
+  return developer.isCreateRestApi;
+}
+
+function writeCode(developer: FrontendDeveloper | BackendDeveloper) {
+  // if(developer.isCreateRestApi) {
+  //     developer.
+  // }
+
+  if (isBackendDeveloper(developer)) {
+    developer.createRestApi();
+  }
+}

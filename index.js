@@ -1,59 +1,51 @@
 "use strict";
-// TypeScript - Nullish assignment vs chaining operator
-// ?? - ?.
-// ?? -  Nullish assignment
-// null, undefined
-// || - yoki
-// false, 0, "", undefined, null
-let a = null;
-a = undefined;
-a = 20;
-// // let b = "" ?? 0;
-// let b = "" || 0;
-let b = a ?? 0;
-// console.log(b);
-// ========================================================
-// ?. - chaining operator
-// const obj = {
-//   user: {
-//     name: "",
-//     country: {
-//       region: "",
-//     },
-//   },
-// };
-// const obj2 = {
-//   user: {
-//     name: "",
-//     country: null,
-//   },
-// };
-// console.log(obj.user?.country?.region); // undefined
-function add(x, y, cb) {
-    let natija = x + y;
-    //   if (cb) {
-    //     cb(natija);
-    //   }
-    cb?.(natija);
-    return natija;
-}
-function calcProductPrice(arr) {
-    let s = 0;
-    arr.forEach((item) => {
-        s += item?.price ?? 0;
+// TypeScript - ! operator va foydalanuvchi ma'lumotlarini tekshirish
+function calcWeightProducts(products) {
+    let totalWeight = 0;
+    products.forEach((product) => {
+        totalWeight += product.weight;
     });
-    return s;
+    return totalWeight;
 }
-const result = calcProductPrice([
-    { price: 1 },
-    null,
-    { price: 2 },
-    undefined,
-    { price: 3 },
-    null,
-    { price: 4 },
-    undefined,
-    { price: 5 },
+const result = calcWeightProducts([
+    { name: "Product 1", weight: 1 },
+    { name: "Product 2", weight: 2 },
+    { name: "Product 3", weight: 3 },
 ]);
-console.log("Result = ", result);
+console.log(result);
+// =============================================================
+let a = null;
+setTimeout(() => {
+    a = 20;
+}, 500);
+setTimeout(() => {
+    let b = a;
+    console.log(b);
+}, 1000);
+// =============================================================
+// let s: string;
+// console.log(s!);
+// =============================================================
+class FrontendDeveloper {
+    constructor() {
+        this.isCreateRestApi = false;
+    }
+}
+class BackendDeveloper {
+    constructor() {
+        this.isCreateRestApi = true;
+    }
+    createRestApi() { }
+}
+function isBackendDeveloper(developer) {
+    return developer.isCreateRestApi;
+}
+function writeCode(developer) {
+    // if(developer.isCreateRestApi) {
+    //     developer.
+    // }
+    if (isBackendDeveloper(developer)) {
+        developer.createRestApi();
+    }
+}
 //# sourceMappingURL=index.js.map
