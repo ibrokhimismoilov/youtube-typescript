@@ -1,18 +1,59 @@
 "use strict";
-// TypeScript - BigInt
-console.log("Number.MAX_VALUE", Number.MAX_VALUE);
-console.log("Number.MAX_SAFE_INTEGER", Number.MAX_SAFE_INTEGER);
-console.log("9007199254740991 + 2", Number.MAX_SAFE_INTEGER + 2);
-console.log("9999999999999999", 9999999999999999);
-// let a: bigint = 12;
-let a = 12n;
-// let b: bigint = 12.3n;
-// console.log(a);
-// let c: bigint = <bigint>12
-// let d: bigint = 12 as bigint;
-let e = BigInt(12);
-console.log("e=>", e);
-console.log(11n / 3n);
-console.log("BigInt 9007199254740991 + 2", BigInt(Number.MAX_SAFE_INTEGER) + 2n);
-console.log("99999999999999999999n", 99999999999999999999n);
+// TypeScript - Nullish assignment vs chaining operator
+// ?? - ?.
+// ?? -  Nullish assignment
+// null, undefined
+// || - yoki
+// false, 0, "", undefined, null
+let a = null;
+a = undefined;
+a = 20;
+// // let b = "" ?? 0;
+// let b = "" || 0;
+let b = a ?? 0;
+// console.log(b);
+// ========================================================
+// ?. - chaining operator
+// const obj = {
+//   user: {
+//     name: "",
+//     country: {
+//       region: "",
+//     },
+//   },
+// };
+// const obj2 = {
+//   user: {
+//     name: "",
+//     country: null,
+//   },
+// };
+// console.log(obj.user?.country?.region); // undefined
+function add(x, y, cb) {
+    let natija = x + y;
+    //   if (cb) {
+    //     cb(natija);
+    //   }
+    cb?.(natija);
+    return natija;
+}
+function calcProductPrice(arr) {
+    let s = 0;
+    arr.forEach((item) => {
+        s += item?.price ?? 0;
+    });
+    return s;
+}
+const result = calcProductPrice([
+    { price: 1 },
+    null,
+    { price: 2 },
+    undefined,
+    { price: 3 },
+    null,
+    { price: 4 },
+    undefined,
+    { price: 5 },
+]);
+console.log("Result = ", result);
 //# sourceMappingURL=index.js.map

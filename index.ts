@@ -1,26 +1,85 @@
-// TypeScript - BigInt
-console.log("Number.MAX_VALUE", Number.MAX_VALUE);
-console.log("Number.MAX_SAFE_INTEGER", Number.MAX_SAFE_INTEGER);
-console.log("9007199254740991 + 2", Number.MAX_SAFE_INTEGER + 2);
-console.log("9999999999999999", 9999999999999999);
+// TypeScript - Nullish assignment vs chaining operator
+// ?? - ?.
 
-// let a: bigint = 12;
-let a: bigint = 12n;
-// let b: bigint = 12.3n;
+// ?? -  Nullish assignment
+// null, undefined
 
-// console.log(a);
+// || - yoki
+// false, 0, "", undefined, null
 
-// let c: bigint = <bigint>12
-// let d: bigint = 12 as bigint;
-let e: bigint = BigInt(12);
+let a: number | null | undefined = null;
 
-console.log("e=>", e);
+a = undefined;
 
-console.log(11n / 3n);
+a = 20;
 
-console.log(
-  "BigInt 9007199254740991 + 2",
-  BigInt(Number.MAX_SAFE_INTEGER) + 2n
-);
+// // let b = "" ?? 0;
+// let b = "" || 0;
 
-console.log("99999999999999999999n", 99999999999999999999n);
+let b: number = a ?? 0;
+
+// console.log(b);
+
+// ========================================================
+// ?. - chaining operator
+// const obj = {
+//   user: {
+//     name: "",
+//     country: {
+//       region: "",
+//     },
+//   },
+// };
+
+// const obj2 = {
+//   user: {
+//     name: "",
+//     country: null,
+//   },
+// };
+
+// console.log(obj.user?.country?.region); // undefined
+
+function add(x: number, y: number, cb?: (v: number) => void): number {
+  let natija: number = x + y;
+
+  //   if (cb) {
+  //     cb(natija);
+  //   }
+
+  cb?.(natija);
+
+  return natija;
+}
+
+// const result: number = add(2, 3, (e) => console.log(">>>", e));
+
+// console.log("result", result);
+
+// ========================================================
+
+type Arr = ({ price: number } | null | undefined)[];
+
+function calcProductPrice(arr: Arr): number {
+  let s: number = 0;
+
+  arr.forEach((item) => {
+    s += item?.price ?? 0;
+  });
+
+  return s;
+}
+
+const result: number = calcProductPrice([
+  { price: 1 },
+  null,
+  { price: 2 },
+  undefined,
+  { price: 3 },
+  null,
+  { price: 4 },
+  undefined,
+  { price: 5 },
+]);
+
+console.log("Result = ", result);
