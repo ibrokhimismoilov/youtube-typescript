@@ -8,9 +8,7 @@
 // false, 0, "", undefined, null
 
 let a: number | null | undefined = null;
-
 a = undefined;
-
 a = 20;
 
 // // let b = "" ?? 0;
