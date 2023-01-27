@@ -1,44 +1,47 @@
 // TypeScriptda asosiy ma'lumot turlari
-// let a = 12
-// a = "salom"
-// a = 1 + 2
-// a = 1 + "salom" // "1salom"
-let a: number;
+
+// let a = 12;
+// a = "str";
+// a = true;
+// a = {};
+// a = 12 + 12;
+
+let a: number; // 1, 23, 1.232
 a = 17;
 
-// let b = "ibrohim";
-// b = 12
-// b = true
-// b = b + " Ismoilov";
-let b: string = "Ibrokhim";
+// let b = "text";
+// b = true;
+// b = 23;
+// b = "string";
+let b: string = "text"; // "", '', ``
 
 // let c = true;
-// c = 12
-// c = "salom"
-// c = false
-let c: boolean;
-c = false;
+// c = 12;
+// c = function () {};
+let c: boolean = false; // true | false
 
-// let d = null
+// let d = null;
 let d: null = null;
-// d = true
+// d = undefined;
 
+// let e = undefined;
 let e: undefined = undefined;
 
-// let f = {}
-// let f: object = {}
-// f = 1
-// f = {name: "Ibrokhim"}
+// let f = {};
+// let f: object = {};
+// f = 12;
+// f = { name: "Ibrokhim" };
 // f.
-// let f: { name: string } = { name: "Ismoil" };
-const f: { lastName: string } = { lastName: "Ismoil" };
-// f = {lastName: "Ibrokhim"}
-f.lastName = "Ibrokhim";
+
+let f: { name: string } = { name: "Ibrokhim" };
+// f.name = "Ismoil";
 
 let g: any;
-g = 1;
-g = undefined;
-g = "string";
+g = 12;
+g = "text";
 g = false;
+g = { name: "Ibrokhim" };
 g = function () {};
-g = {};
+g = [];
+g = null;
+g = undefined;
