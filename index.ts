@@ -1,79 +1,78 @@
-// Tiplarni o'zgartirish va birlashtrish,
+// Typescriptda tiplarni o'zgartirish va birlashtrish.
 // unknown type, union types, literal types, type aliases, required and optional properties, operator in
 
-let a: any = 1;
+// havfli usul
+let a: any = 10;
 let b: number = a;
-let c: unknown = 2.1234;
 
-let d: number = <number>c;
-let e: number = c as number;
+// havfsiz usul
+let c: unknown = 20.1234;
+// let d: number = c;
 
-// (<number>c).toFixed(2)
+let e: number = <number>c;
+let f: number = c as number;
+
 // (c as number).toFixed(2);
+// (<number>c).toString();
 
-// (c as string).concat("asas");
+// union type
+let h: number | string | boolean = 10;
+h = "tri";
+h = true;
 
-//==================================
+// literal types
+let s: "sm" | "md" | "lg";
 
-// Union types
-let f: number | string | boolean = 2;
-f = "asas";
-f = true;
-// f = {}
+// s = "asdasd"
+// s = 12;
+// s = true
+s = "sm";
+s = "md";
+s = "lg";
 
-// Literal types
-let size: "s" | "m" | "l";
-size = "s";
-size = "m";
-size = "l";
-// size = "xl";
+// type aliases
 
-// let f2: number | string | boolean = 2;
+type Sizes = "SM" | "MD" | "LG" | boolean;
 
-// Type aliases
-type TYPE = number | string | boolean;
+let s2: Sizes = "SM";
 
-let f2: TYPE;
-f2 = 12;
-f2 = "";
-f2 = true;
-// f2 = {}
+s2 = "MD";
+s2 = "LG";
 
-type SIZE = "S" | "M" | "L" | boolean;
+let s3: Sizes = false;
 
-let product: SIZE = false;
-product = "S";
-product = "M";
-product = "L";
-// product = "XL"
+s3 = "MD";
+s3 = "SM";
+s3 = false;
+// s3 = 123
+// s3 = "XL";
 
-let o: { name: string } | { age: number };
-o = { name: "" };
-o = { age: 12 };
-o = { name: "", age: 12 };
-// o = { name: 12, age: 12 };
-// o = { name: 12, age: 12, lastName: "" };
-// o = {}
+type OBJ = { name: string } | { age: number };
 
-// Tiplarni birlashirish
+let obj: OBJ;
 
-type O2 = { name: string } & { age: number };
+obj = { name: "str" };
+obj = { age: 23 };
+obj = { name: "sdf", age: 23 };
+// obj = {};
 
-let o2: O2;
-let o3: O2;
+type OBJ2 = { name: string } & { age: number }; // {name: string, age: number}
+let obj2: OBJ2;
 
-o2 = { name: "", age: 12 };
-o3 = { name: "", age: 23 };
+obj2 = { name: "Ibrokhim", age: 23 };
+// obj2 = {name: "asd"}
+// obj2 = { age: 23 };
 
-//required & optional properties
-type OBJ = { firstname: string; age?: number };
+type OBJ3 = { name: string; age?: number };
 
-let person: OBJ = { firstname: "Ibrokhim" };
+let obj3: OBJ3 = { name: "Ibrokhim" };
 
-// person = { firstname: "Ismoil", age: 12 };
+// obj3 = { name: "Ibrokhim", age: 23 };
+// obj3 = { name: "Ibrokhim", age: 23, weight: 34 };
+// obj3 = { age: 23 };
 
-if ("age" in person) {
-  console.log("Age property mavjud");
+if ("age" in obj3) {
+  console.log("Mavjud");
 } else {
-  console.log("Age property mavjud emas");
+  console.log("Mavjud emas");
 }

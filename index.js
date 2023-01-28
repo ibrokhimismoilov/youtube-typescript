@@ -1,48 +1,49 @@
 "use strict";
-// Tiplarni o'zgartirish va birlashtrish,
+// Typescriptda tiplarni o'zgartirish va birlashtrish.
 // unknown type, union types, literal types, type aliases, required and optional properties, operator in
-let a = 1;
+// havfli usul
+let a = 10;
 let b = a;
-let c = 2.1234;
-let d = c;
+// havfsiz usul
+let c = 20.1234;
+// let d: number = c;
 let e = c;
-// (<number>c).toFixed(2)
+let f = c;
 // (c as number).toFixed(2);
-// (c as string).concat("asas");
-//==================================
-// Union types
-let f = 2;
-f = "asas";
-f = true;
-// f = {}
-// Literal types
-let size;
-size = "s";
-size = "m";
-size = "l";
-let f2;
-f2 = 12;
-f2 = "";
-f2 = true;
-let product = false;
-product = "S";
-product = "M";
-product = "L";
-// product = "XL"
-let o;
-o = { name: "" };
-o = { age: 12 };
-o = { name: "", age: 12 };
-let o2;
-let o3;
-o2 = { name: "", age: 12 };
-o3 = { name: "", age: 23 };
-let person = { firstname: "Ibrokhim" };
-// person = { firstname: "Ismoil", age: 12 };
-if ("age" in person) {
-    console.log("Age property mavjud");
+// (<number>c).toString();
+// union type
+let h = 10;
+h = "tri";
+h = true;
+// literal types
+let s;
+// s = "asdasd"
+// s = 12;
+// s = true
+s = "sm";
+s = "md";
+s = "lg";
+let s2 = "SM";
+s2 = "MD";
+s2 = "LG";
+let s3 = false;
+s3 = "MD";
+s3 = "SM";
+s3 = false;
+let obj;
+obj = { name: "str" };
+obj = { age: 23 };
+obj = { name: "sdf", age: 23 };
+let obj2;
+obj2 = { name: "Ibrokhim", age: 23 };
+let obj3 = { name: "Ibrokhim" };
+// obj3 = { name: "Ibrokhim", age: 23 };
+// obj3 = { name: "Ibrokhim", age: 23, weight: 34 };
+// obj3 = { age: 23 };
+if ("age" in obj3) {
+    console.log("Mavjud");
 }
 else {
-    console.log("Age property mavjud emas");
+    console.log("Mavjud emas");
 }
 //# sourceMappingURL=index.js.map
