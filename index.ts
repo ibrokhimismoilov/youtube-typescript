@@ -1,55 +1,70 @@
-// Massivlar, kortejlar va qayta hisoblash
+// TypeScript - Arrays, tuples & Enums
 
-// let a = [];
-// a = [12, true, "str", []]
-// let a = [1, 2, 4]
-let a: number[] = [];
-a = [1];
-// a = [1, 2, true]
+// toplamlar
+let a = [];
+a = [12, "sdf", true, undefined, {}];
 
-let b: string[] = ["text", "str", ""];
+// let b = [1, 2, 3, 4];
+// b = ["sdsdf"];
+let b: number[] = [1, 2, 3];
 
-let c: Array<number> = [1, 2, 3];
+b = [12, 34];
+// b = ["sdf", true];
+let c: Array<number> = [12];
+c = [1, 2, 3, 4];
 
-let d: (number | string)[] = ["", 12, ""];
+let d: (number | string | object | boolean)[] = [12, "asd", 232];
 
-let e: Array<number | string> = [1, 2, 3, ""];
+let e: Array<boolean | number> = [true, false, 12];
+// e = [12, true, "sdf"]
 
-// ===================================================
-// kortejlar
+// ============================================================
+// tuples - kortejlar
 
-let f: [number, string] = [1, "asd"];
-// f = [true]
-// f = [""]
-f = [1, "str"];
+let f: [number, string];
 
-let g: [number, string?, boolean?];
+f = [12, "name"];
+// f = ["asdasd", 12]
+// f = [12];
+// f = ["asdda"];
+let g: [number, [number, string]];
+g = [123, [12, "asdasd"]];
 
-g = [12, "str", true];
+// ============================================================
+// Qayta hisoblash - Enums
 
-// let h: [number, string?, boolean]
+// {
+//   "": 123123
+// }
 
-// ===================================================
-// Qayta hisoblash [Enums]
-
+// number | symbol | string
 enum Gender {
-  Male = 10,
+  Male,
   Female,
 }
 
 // console.log(Gender.Male, Gender.Female);
-// console.log("Male=" + Gender[Gender.Male], "Female" + Gender[Gender.Female]);
+// console.log(Gender[1], Gender[Gender.Female]);
 
-enum G {
+// enum G {
+//   A = 10,
+//   A2,
+//   B,
+//   C,
+// }
+
+// console.log(G.A, G.A2, G.B, G.C);
+
+enum H {
   A = "Hello",
-  B = "TypeScript",
-}
-
-// console.log(G.A, G.B, G[G.A]);
-
-const enum H {
-  A = "Hello",
-  B = "TypeScript",
+  B = "Typescript",
 }
 
 console.log(H.A, H.B);
+
+const enum I {
+  A = 10,
+  B = "salom",
+}
+
+console.log(I.A, I.B);
